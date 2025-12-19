@@ -1,13 +1,8 @@
 import argparse
 import sys
+import os
 
-def cli():
-    parser = argparse.ArgumentParser(prog="bip2")
-    parser.add_argument("cmd", help="command")
-    args = parser.parse_args()
+sys.path.insert(0, os.path.dirname(__file__))
 
-    print(f"Unknown command: {args.cmd}", file=sys.stderr)
-    sys.exit(1)
-
-if __name__ == "__main__":
-    cli()
+from normalize.bytes import normalize_bytes
+from canonical.json import canonicalize_json
