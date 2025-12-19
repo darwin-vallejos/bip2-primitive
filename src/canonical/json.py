@@ -1,32 +1,35 @@
 """
-Canonical JSON normalization.
+Canonical JSON structural ordering.
 
 Rules:
-- UTF-8 only
 - Objects: keys sorted lexicographically
 - Arrays: order preserved
-- No insignificant whitespace
-- No trailing commas
-- Numbers unchanged
-- Strings unchanged
+- Values unchanged
 """
 
 import json
 from typing import Any
 
+
 def _canonicalize(value: Any) -> Any:
     if isinstance(value, dict):
-        return {k: _canonicalize(value[k]) for k in sorted(value.keys())}
+        return {
+            key: _canonicalize(value[key])
+            for key in sorted(value.keys())
+        }
+
     if isinstance(value, list):
-        return [_canonicalize(v) for v in value]
+        return [_canonicalize(item) for item in value]
+
     return value
 
-def canonical_json(raw: bytes) -> bytes:
-    obj = json.loads(raw.decode("utf-8"))
-    canon = _canonicalize(obj)
-    text = json.dumps(
-        canon,
-        ensure_ascii=False,
+
+def canonicalize_json(raw: bytes) -> bytes:
+    data = json.loads(raw.decode("utf-8"))
+    canonical = _canonicalize(data)
+
+    return json.dumps(
+        canonical,
         separators=(",", ":"),
-    )
-    return text.encode("utf-8")
+        ensure_ascii=False
+    ).encode("utf-8") + b"\n"

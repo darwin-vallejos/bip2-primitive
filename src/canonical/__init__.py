@@ -1,7 +1,9 @@
 import argparse
 import sys
+
 from normalize.bytes import normalize_bytes
-from canonical.json import canonical_json
+from canonical.json import canonicalize_json
+
 
 def cli():
     parser = argparse.ArgumentParser(prog="bip2")
@@ -18,14 +20,17 @@ def cli():
 
     if args.cmd == "normalize":
         out = normalize_bytes(raw)
+
     elif args.cmd == "canonicalize":
-        structured = canonical_json(raw)
-        out = normalize_bytes(structured)
+        normalized = normalize_bytes(raw)
+        out = canonicalize_json(normalized)
+
     else:
         print(f"Unknown command: {args.cmd}", file=sys.stderr)
         sys.exit(1)
 
     sys.stdout.buffer.write(out)
+
 
 if __name__ == "__main__":
     cli()
