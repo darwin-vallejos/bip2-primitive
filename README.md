@@ -2,13 +2,27 @@
 
 # 
 
-# \## 🔒 Status: Frozen Primitive
+# \[!\[DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18004196.svg)](https://doi.org/10.5281/zenodo.18004196)
 
 # 
 
-# This repository contains the final, immutable implementation
+# \## 🔒 Status: Frozen Primitive (v1.0)
 
-# of the BIP-2 deterministic hashing primitive.
+# 
+
+# This repository contains the \*\*frozen reference implementation\*\* of the BIP-2
+
+# deterministic receipt primitive.
+
+# 
+
+# The primitive is \*\*immutable\*\*, \*\*content-agnostic\*\*, and \*\*deterministic\*\*.
+
+# It performs no interpretation, policy enforcement, or platform logic.
+
+# 
+
+# Any system-level behavior must be layered \*outside\* this repository.
 
 # 
 
@@ -20,35 +34,13 @@
 
 # 
 
-# A minimal, deterministic computation unit that performs:
+# \- A deterministic computation primitive
 
-# 
+# \- Content-agnostic
 
-# Normalize → Canonicalize → Hash
+# \- Reproducible across environments
 
-# 
-
-# ---
-
-# 
-
-# \## What This Is NOT
-
-# 
-
-# This repository does NOT:
-
-# \- Run a service
-
-# \- Store data
-
-# \- Perform consensus
-
-# \- Interpret hashes
-
-# \- Manage identity
-
-# \- Act as a platform
+# \- Suitable for cryptographic verification and audit trails
 
 # 
 
@@ -56,27 +48,17 @@
 
 # 
 
-# \## Design Principle
+# \## What This Is Not
 
 # 
 
-# The BIP-2 primitive must remain unchanged, unaware,
+# \- Not a policy engine
 
-# and uninterested in any platform that uses it.
+# \- Not an authority
 
-# 
+# \- Not a platform
 
-# ---
-
-# 
-
-# \## Usage
-
-# 
-
-# The primitive exposes a minimal CLI for computing
-
-# deterministic hashes from structured input.
+# \- Not mutable after v1.0
 
 # 
 
@@ -84,15 +66,73 @@
 
 # 
 
-# \## Finality Notice
+# \## Verification
 
 # 
 
-# This repository is frozen at \*\*v1.2-final\*\*.
+# Independent verification instructions are provided in \[`VERIFY.md`](VERIFY.md).
 
 # 
 
-# No new features will be added.
+# Determinism has been empirically verified using repeated execution with identical
+
+# inputs producing identical outputs.
+
+# 
+
+# ---
+
+# 
+
+# \## Frozen Primitive Methodology (FPM)
+
+# 
+
+# This repository follows the Frozen Primitive Methodology:
+
+# 
+
+# \- Immutable computation core
+
+# \- No side effects
+
+# \- No external state
+
+# \- No interpretation layer
+
+# 
+
+# Extensions must import this primitive without modification.
+
+# 
+
+# ---
+
+# 
+
+# \## Citation
+
+# 
+
+# Vallejos, D. (2025).  
+
+# \*The Frozen Primitive Methodology: Deterministic Computation via Immutable Primitives\*.  
+
+# Zenodo.  
+
+# https://doi.org/10.5281/zenodo.18004196
+
+# 
+
+# ---
+
+# 
+
+# \## License
+
+# 
+
+# MIT License. See \[`LICENSE`](LICENSE).
 
 
 
